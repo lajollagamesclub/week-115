@@ -1,16 +1,17 @@
 extends Control
 
 func _ready():
-	$"PlayButton".connect("pressed", self, "PLAY")
-	$"OptionsButton".connect("pressed", self, "OPTIONS")
-	$"QuitButton".connect("pressed", self, "QUIT")
 	pass
 	
-func PLAY():
-	pass
-	
-func OPTIONS():
-	pass
 
-func QUIT():
-	pass
+
+func _on_playButton_pressed():
+	pass # Replace with function body.
+
+
+func _on_optionsButton_pressed():
+	pass # Replace with function body.
+
+
+func _on_quitButton_pressed():
+	pass # Replace with function body.
