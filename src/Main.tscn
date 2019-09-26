@@ -1,14 +1,20 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Boundary.tscn" type="PackedScene" id=1]
 [ext_resource path="res://ShortBoundary.tscn" type="PackedScene" id=2]
-[ext_resource path="res://YoungPlayer.tscn" type="PackedScene" id=3]
-[ext_resource path="res://MegalovaniaStarter.tscn" type="PackedScene" id=4]
-[ext_resource path="res://BonkFlash.gd" type="Script" id=5]
+[ext_resource path="res://desk.png" type="Texture" id=3]
+[ext_resource path="res://YoungPlayer.tscn" type="PackedScene" id=4]
+[ext_resource path="res://MegalovaniaStarter.tscn" type="PackedScene" id=5]
+[ext_resource path="res://BonkFlash.gd" type="Script" id=6]
+
+[sub_resource type="SegmentShape2D" id=1]
+a = Vector2( -160, -97 )
+b = Vector2( 150, -97 )
 
 [node name="Main" type="Node2D"]
 
 [node name="BG" type="CanvasLayer" parent="."]
+editor/display_folded = true
 layer = -1
 
 [node name="ColorRect" type="ColorRect" parent="BG"]
@@ -16,21 +22,42 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 1, 0.917647, 0, 1 )
 
-[node name="Floor" parent="." instance=ExtResource( 1 )]
+[node name="Boundaries" type="Node2D" parent="."]
+editor/display_folded = true
+__meta__ = {
+"_edit_lock_": true
+}
 
-[node name="Ceiling" parent="." instance=ExtResource( 1 )]
+[node name="Floor" parent="Boundaries" instance=ExtResource( 1 )]
+
+[node name="Ceiling" parent="Boundaries" instance=ExtResource( 1 )]
 position = Vector2( 0, 0 )
 
-[node name="LeftWall" parent="." instance=ExtResource( 2 )]
+[node name="LeftWall" parent="Boundaries" instance=ExtResource( 2 )]
 position = Vector2( 0, 0 )
 
-[node name="RightWall" parent="." instance=ExtResource( 2 )]
+[node name="RightWall" parent="Boundaries" instance=ExtResource( 2 )]
 position = Vector2( 1024, 0 )
 
-[node name="YoungPlayer" parent="." instance=ExtResource( 3 )]
-position = Vector2( 295.118, 192.233 )
+[node name="World" type="Node2D" parent="."]
 
-[node name="MegalovaniaStarter" parent="." instance=ExtResource( 4 )]
+[node name="StaticBody2D" type="StaticBody2D" parent="World"]
+position = Vector2( 683.527, 539.817 )
+collision_layer = 2
+collision_mask = 2
+
+[node name="DeskSprite" type="Sprite" parent="World/StaticBody2D"]
+position = Vector2( 0, -33.4033 )
+scale = Vector2( 8, 8 )
+texture = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/StaticBody2D"]
+shape = SubResource( 1 )
+
+[node name="YoungPlayer" parent="." instance=ExtResource( 4 )]
+position = Vector2( 504.559, 523.848 )
+
+[node name="MegalovaniaStarter" parent="." instance=ExtResource( 5 )]
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -38,5 +65,8 @@ position = Vector2( 295.118, 192.233 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 1, 1, 1, 0 )
-script = ExtResource( 5 )
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_lock_": true
+}
 [connection signal="bonked" from="YoungPlayer" to="UI/BonkFlash" method="_on_YoungPlayer_bonked"]

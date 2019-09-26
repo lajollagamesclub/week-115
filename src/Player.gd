@@ -26,6 +26,15 @@ func _physics_process(delta):
 	if vertical < 0 and $FloorRayCast.is_colliding():
 		jump()
 	
+	if vel.y < 0:
+		set_casts_bit(1, false)
+		set_collision_layer_bit(1, false)
+		set_collision_mask_bit(1, false)
+	else:
+		set_casts_bit(1, true)
+		set_collision_layer_bit(1, true)
+		set_collision_mask_bit(1, true)
+	
 	if $LeftRayCast.is_colliding() or $RightRayCast.is_colliding():
 		if abs(vel.x) > 800:
 			$BonkPlayer.play()
@@ -48,7 +57,7 @@ func _physics_process(delta):
 	
 	vel.x = dampen_value(vel.x, dampening)
 	
-	move_and_collide(vel*delta)
+	move_and_slide(vel)
 
 func jump():
 	jumping = true
@@ -74,3 +83,8 @@ func set_age(new_age: int):
 		"young":
 			new_node = load("res://YoungPlayer.tscn").instance()
 	replace_by(new_node, true)
+
+func set_casts_bit(in_bit: int, value: bool):
+	$FloorRayCast.set_collision_mask_bit(in_bit, value)
+	$RightRayCast.set_collision_mask_bit(in_bit, value)
+	$LeftRayCast.set_collision_mask_bit(in_bit, value)
