@@ -45,3 +45,4 @@ margin_right = 824.0
 margin_bottom = 400.0
 size_flags_vertical = 1
 text = "Take Me Back! ( like Braid )"
+target_scene = "res://Main.tscn"
