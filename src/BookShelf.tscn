@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://bookshelf.png" type="Texture" id=1]
+
+[sub_resource type="SegmentShape2D" id=2]
+a = Vector2( -56, -160 )
+b = Vector2( 70, -160 )
+
+[node name="BookShelf" type="StaticBody2D"]
+position = Vector2( 372.066, 408.223 )
+collision_layer = 2
+collision_mask = 2
+
+[node name="BookShelfSprite" type="Sprite" parent="."]
+scale = Vector2( 8, 8 )
+texture = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 2 )

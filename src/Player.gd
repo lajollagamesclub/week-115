@@ -53,7 +53,7 @@ func _physics_process(delta):
 		set_collision_mask_bit(1, true)
 	
 	if left_raycast.is_colliding() or right_raycast.is_colliding():
-		if abs(vel.x) > 800:
+		if abs(vel.x) > 600:
 			$BonkPlayer.play()
 			emit_signal("bonked")
 		vel.x *= -0.4

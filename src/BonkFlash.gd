@@ -9,6 +9,6 @@ func _process(delta):
 		return
 	color.a -= 0.5*delta
 
-func _on_YoungPlayer_bonked():
+func _on_Player_bonked():
 	color.a = 1.0
 	set_process(true)

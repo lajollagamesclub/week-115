@@ -1,9 +1,9 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Boundary.tscn" type="PackedScene" id=1]
 [ext_resource path="res://ShortBoundary.tscn" type="PackedScene" id=2]
 [ext_resource path="res://desk.png" type="Texture" id=3]
-[ext_resource path="res://bookshelf.png" type="Texture" id=4]
+[ext_resource path="res://BookShelf.tscn" type="PackedScene" id=4]
 [ext_resource path="res://monitor.png" type="Texture" id=5]
 [ext_resource path="res://MegalovaniaStarter.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=7]
@@ -12,10 +12,6 @@
 [sub_resource type="SegmentShape2D" id=1]
 a = Vector2( -160, -97 )
 b = Vector2( 150, -97 )
-
-[sub_resource type="SegmentShape2D" id=2]
-a = Vector2( -56, -160 )
-b = Vector2( 70, -160 )
 
 [node name="Main" type="Node2D"]
 
@@ -59,20 +55,19 @@ texture = ExtResource( 3 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Desk"]
 shape = SubResource( 1 )
 
-[node name="BookShelf" type="StaticBody2D" parent="World"]
-position = Vector2( 372.066, 408.223 )
-collision_layer = 2
-collision_mask = 2
+[node name="BookShelf" parent="World" instance=ExtResource( 4 )]
 
-[node name="BookShelfSprite" type="Sprite" parent="World/BookShelf"]
+[node name="BookShelf2" parent="World" instance=ExtResource( 4 )]
+position = Vector2( 250, 408.223 )
+scale = Vector2( -1, 1 )
+
+[node name="Monitor" type="Sprite" parent="World"]
+position = Vector2( 780, 390 )
 scale = Vector2( 8, 8 )
-texture = ExtResource( 4 )
+texture = ExtResource( 5 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="World/BookShelf"]
-shape = SubResource( 2 )
-
-[node name="monitor" type="Sprite" parent="World"]
-position = Vector2( 674.094, 387.678 )
+[node name="Monitor2" type="Sprite" parent="World"]
+position = Vector2( 580, 390 )
 scale = Vector2( 8, 8 )
 texture = ExtResource( 5 )
 
@@ -91,3 +86,4 @@ script = ExtResource( 8 )
 __meta__ = {
 "_edit_lock_": true
 }
+[connection signal="bonked" from="Player" to="UI/BonkFlash" method="_on_Player_bonked"]
