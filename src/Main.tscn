@@ -1,28 +1,31 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Boundary.tscn" type="PackedScene" id=1]
 [ext_resource path="res://ShortBoundary.tscn" type="PackedScene" id=2]
 [ext_resource path="res://desk.png" type="Texture" id=3]
 [ext_resource path="res://bookshelf.png" type="Texture" id=4]
 [ext_resource path="res://monitor.png" type="Texture" id=5]
-[ext_resource path="res://YoungPlayer.tscn" type="PackedScene" id=6]
-[ext_resource path="res://MegalovaniaStarter.tscn" type="PackedScene" id=7]
+[ext_resource path="res://MegalovaniaStarter.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Player.tscn" type="PackedScene" id=7]
 [ext_resource path="res://BonkFlash.gd" type="Script" id=8]
 
 [sub_resource type="SegmentShape2D" id=1]
 a = Vector2( -160, -97 )
 b = Vector2( 150, -97 )
 
+[sub_resource type="SegmentShape2D" id=2]
+a = Vector2( -56, -160 )
+b = Vector2( 70, -160 )
+
 [node name="Main" type="Node2D"]
 
 [node name="BG" type="CanvasLayer" parent="."]
-editor/display_folded = true
 layer = -1
 
 [node name="ColorRect" type="ColorRect" parent="BG"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 1, 0.917647, 0, 1 )
+color = Color( 0.933333, 0.839216, 0.643137, 1 )
 
 [node name="Boundaries" type="Node2D" parent="."]
 editor/display_folded = true
@@ -56,20 +59,27 @@ texture = ExtResource( 3 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Desk"]
 shape = SubResource( 1 )
 
-[node name="Bookshelf" type="Sprite" parent="World"]
+[node name="BookShelf" type="StaticBody2D" parent="World"]
 position = Vector2( 372.066, 408.223 )
+collision_layer = 2
+collision_mask = 2
+
+[node name="BookShelfSprite" type="Sprite" parent="World/BookShelf"]
 scale = Vector2( 8, 8 )
 texture = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/BookShelf"]
+shape = SubResource( 2 )
 
 [node name="monitor" type="Sprite" parent="World"]
 position = Vector2( 674.094, 387.678 )
 scale = Vector2( 8, 8 )
 texture = ExtResource( 5 )
 
-[node name="YoungPlayer" parent="." instance=ExtResource( 6 )]
-position = Vector2( 504.559, 523.848 )
+[node name="MegalovaniaStarter" parent="." instance=ExtResource( 6 )]
 
-[node name="MegalovaniaStarter" parent="." instance=ExtResource( 7 )]
+[node name="Player" parent="." instance=ExtResource( 7 )]
+position = Vector2( 232.624, 441.986 )
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -81,4 +91,3 @@ script = ExtResource( 8 )
 __meta__ = {
 "_edit_lock_": true
 }
-[connection signal="bonked" from="YoungPlayer" to="UI/BonkFlash" method="_on_YoungPlayer_bonked"]
