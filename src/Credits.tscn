@@ -1,0 +1,48 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://default_theme.tres" type="Theme" id=1]
+[ext_resource path="res://TravelButton.tscn" type="PackedScene" id=2]
+
+[node name="Credits" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+custom_constants/margin_right = 15
+custom_constants/margin_top = 15
+custom_constants/margin_left = 15
+custom_constants/margin_bottom = 15
+
+[node name="TitleLabel" type="Label" parent="CanvasLayer/MarginContainer"]
+margin_left = 15.0
+margin_top = 15.0
+margin_right = 1009.0
+margin_bottom = 585.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Credits"
+align = 1
+
+[node name="CreditsLabel" type="Label" parent="CanvasLayer/MarginContainer"]
+margin_left = 15.0
+margin_top = 221.0
+margin_right = 1009.0
+margin_bottom = 378.0
+size_flags_vertical = 6
+text = "cameron - project lead, programmer
+greg, colin, charley, lin - art
+ian - communications
+ryan - game designer"
+align = 1
+
+[node name="BackButton" parent="CanvasLayer/MarginContainer" instance=ExtResource( 2 )]
+margin_left = 15.0
+margin_top = 542.0
+margin_right = 1009.0
+margin_bottom = 585.0
+size_flags_vertical = 8
+text = "Back"
+target_scene = "res://TitleScreen.tscn"

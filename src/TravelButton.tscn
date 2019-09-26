@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://TravelButton.gd" type="Script" id=1]
+
+[node name="TravelButton" type="Button"]
+margin_right = 1024.0
+margin_bottom = 300.0
+size_flags_vertical = 3
+text = "Travel"
+flat = true
+script = ExtResource( 1 )
+[connection signal="pressed" from="." to="." method="_on_TravelButton_pressed"]

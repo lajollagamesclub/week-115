@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://default_theme.tres" type="Theme" id=1]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform float sin_multiplier = 10.0;
+uniform float sin_time = 0.0;
+
+void fragment() {
+	COLOR.a = sin(sin_time*sin_multiplier) + 0.5;
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/sin_multiplier = 10.0
+shader_param/sin_time = 0.0
+
+[node name="TypingCursor" type="Label"]
+material = SubResource( 2 )
+margin_right = 15.0
+margin_bottom = 27.0
+theme = ExtResource( 1 )
+text = "|"
