@@ -24,7 +24,6 @@ func _physics_process(delta):
 	vertical = int(Input.is_action_pressed("g_down")) - int(Input.is_action_pressed("g_up"))
 	
 	if vertical < 0 and $FloorRayCast.is_colliding():
-		print("jumping")
 		jump()
 	
 	if $LeftRayCast.is_colliding() or $RightRayCast.is_colliding():
