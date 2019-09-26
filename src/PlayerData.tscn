@@ -28,3 +28,4 @@ cast_to = Vector2( 50, 0 )
 enabled = true
 exclude_parent = false
 cast_to = Vector2( -50, 0 )
+[connection signal="tree_exiting" from="." to="." method="_on_PlayerData_tree_exiting"]

@@ -18,7 +18,6 @@ var accel: Vector2 = Vector2()
 var vel: Vector2 = Vector2()
 var jumping: bool = false
 var age: int = 0 setget set_age
-var cur_player_data: String = "YoungPlayer"
 
 var floor_raycast: RayCast2D = null
 var right_raycast: RayCast2D = null
@@ -27,14 +26,18 @@ var sprite: Sprite = null
 var player_data: PlayerData = null
 
 func update_playerdata():
-	player_data = get_node(cur_player_data)
 	sprite = player_data.get_node("Sprite")
 	floor_raycast = player_data.get_node("FloorRayCast")
 	right_raycast = player_data.get_node("RightRayCast")
 	left_raycast = player_data.get_node("LeftRayCast")
 
+func _on_new_age(in_age: int):
+	set_age(in_age)
+
 func _ready():
+	player_data = $YoungPlayer
 	update_playerdata()
+	preload("res://game_state.tres").connect("age_changed", self, "_on_new_age")
 
 func _physics_process(delta):
 	horizontal = int(Input.is_action_pressed("g_right")) - int(Input.is_action_pressed("g_left"))
@@ -69,11 +72,13 @@ func _physics_process(delta):
 	if floor_raycast.is_colliding():
 		if not jumping:
 			vel.y = 0.0
+			print("on floor")
 	else:
 		jumping = false
 	
 	vel.x = dampen_value(vel.x, dampening)
 	
+	print(vel)
 	move_and_slide(vel)
 
 func jump():
@@ -92,14 +97,24 @@ func dampen_value(in_value: float, amount: float) -> float:
 	return in_value - amount*sign(in_value)
 
 func set_age(new_age: int):
-	if new_age > ages.size():
-		print("game over!")
+	if new_age < ages.size():
+		pass
+	else:
+#		print("game over!")
+		return
 	age = new_age
-	var new_node: Player = null
+	var new_node: PlayerData = null
 	match ages[age]:
 		"young":
-			new_node = load("res://YoungPlayer.tscn").instance()
-	replace_by(new_node, true)
+			new_node = preload("res://YoungPlayer.tscn").instance()
+		"adult":
+			new_node = preload("res://AdultPlayer.tscn").instance()
+		"old":
+			new_node = preload("res://OldPlayer.tscn").instance()
+	player_data.queue_free()
+	call_deferred("add_child", new_node)
+	player_data = new_node
+	update_playerdata()
 
 func set_casts_bit(in_bit: int, value: bool):
 	floor_raycast.set_collision_mask_bit(in_bit, value)

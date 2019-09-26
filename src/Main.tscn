@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Boundary.tscn" type="PackedScene" id=1]
 [ext_resource path="res://ShortBoundary.tscn" type="PackedScene" id=2]
@@ -8,6 +8,8 @@
 [ext_resource path="res://MegalovaniaStarter.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=7]
 [ext_resource path="res://BonkFlash.gd" type="Script" id=8]
+[ext_resource path="res://default_theme.tres" type="Theme" id=9]
+[ext_resource path="res://AgeProgressBar.gd" type="Script" id=10]
 
 [sub_resource type="SegmentShape2D" id=1]
 a = Vector2( -160, -97 )
@@ -86,4 +88,12 @@ script = ExtResource( 8 )
 __meta__ = {
 "_edit_lock_": true
 }
+
+[node name="AgeProgressBar" type="ProgressBar" parent="UI"]
+anchor_right = 1.0
+margin_bottom = 50.0
+theme = ExtResource( 9 )
+value = 68.07
+percent_visible = false
+script = ExtResource( 10 )
 [connection signal="bonked" from="Player" to="UI/BonkFlash" method="_on_Player_bonked"]
