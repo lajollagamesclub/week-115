@@ -6,9 +6,20 @@
 [node name="YoungPlayer" instance=ExtResource( 1 )]
 
 [node name="Sprite" parent="." index="0"]
-position = Vector2( 25.2415, -9.13861 )
 scale = Vector2( 5, 5 )
 texture = ExtResource( 2 )
+offset = Vector2( -0.01, -0.39 )
+region_enabled = true
+region_rect = Rect2( 20.77, 19.7, 11.97, 24.95 )
 
 [node name="CollisionShape2D" parent="." index="1"]
 position = Vector2( 1.15259, -11.0537 )
+
+[node name="FloorRayCast" parent="." index="2"]
+cast_to = Vector2( 0, 44.63 )
+
+[node name="RightRayCast" parent="." index="3"]
+cast_to = Vector2( 32.6, 0 )
+
+[node name="LeftRayCast" parent="." index="4"]
+cast_to = Vector2( -29.73, 0 )

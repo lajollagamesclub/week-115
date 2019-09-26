@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://bonk.wav" type="AudioStream" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 30, 52.7603 )
@@ -17,3 +18,14 @@ shape = SubResource( 1 )
 
 [node name="FloorRayCast" type="RayCast2D" parent="."]
 enabled = true
+
+[node name="RightRayCast" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( 50, 0 )
+
+[node name="LeftRayCast" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( -50, 0 )
+
+[node name="BonkPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
