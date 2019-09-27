@@ -72,13 +72,13 @@ func _physics_process(delta):
 	if floor_raycast.is_colliding():
 		if not jumping:
 			vel.y = 0.0
-			print("on floor")
+#			print("on floor")
 	else:
 		jumping = false
 	
 	vel.x = dampen_value(vel.x, dampening)
 	
-	print(vel)
+#	print(vel)
 	move_and_slide(vel)
 
 func jump():
