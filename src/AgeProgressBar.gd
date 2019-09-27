@@ -7,7 +7,7 @@ func _ready():
 	game_state.connect("time_left_changed", self, "_time_left_changed")
 
 func _process(delta):
-	game_state.time_left -= delta*20.0
+	game_state.time_left -= delta
 
 func _time_left_changed(new_time_left):
 	value = new_time_left
