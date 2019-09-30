@@ -5,7 +5,7 @@
 [ext_resource path="res://pillow.wav" type="AudioStream" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 34.8094, 16.9259 )
+extents = Vector2( 96.9902, 12.2287 )
 
 [node name="PillowArea2D" type="Area2D" groups=[
 "bouncy",

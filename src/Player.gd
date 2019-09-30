@@ -20,6 +20,7 @@ var accel: Vector2 = Vector2()
 var vel: Vector2 = Vector2()
 var jumping: bool = false
 var age: int = 0 setget set_age
+var big_bouncy_counter: int = 0 setget set_big_bouncy_counter
 
 var floor_raycast: RayCast2D = null
 var right_raycast: RayCast2D = null
@@ -39,6 +40,9 @@ func _on_world_event(event_type, event_data):
 	match event_type:
 		"bounce":
 			vel.y = -event_data
+		"big_bounce":
+			self.big_bouncy_counter += 1
+			vel.y = -1.5*event_data
 
 func _on_new_age(in_age: int):
 	set_age(in_age)
@@ -131,3 +135,8 @@ func set_casts_bit(in_bit: int, value: bool):
 	floor_raycast.set_collision_mask_bit(in_bit, value)
 	right_raycast.set_collision_mask_bit(in_bit, value)
 	left_raycast.set_collision_mask_bit(in_bit, value)
+
+func set_big_bouncy_counter(new_big_bouncy_counter):
+	big_bouncy_counter = new_big_bouncy_counter
+	if big_bouncy_counter >= 4:
+		game_state.fade_to_scene("res://WinScreen.tscn")

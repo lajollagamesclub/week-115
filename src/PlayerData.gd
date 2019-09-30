@@ -11,6 +11,7 @@ var area_groups = {
 	"hair_spray": [],
 	"fire": [],
 	"bouncy": [],
+	"big_bouncy": [],
 	"instadeath": [],
 	"chokey": []
 }
@@ -30,6 +31,8 @@ func _on_PlayerData_tree_exiting():
 func calculate_next_event():
 	if area_groups["bouncy"].size() > 0:
 		game_state.emit_event("bounce", get_parent().vel.y)
+	elif area_groups["big_bouncy"].size() > 0:
+		game_state.emit_event("big_bounce", get_parent().vel.y)
 
 func _on_PlayerData_area_entered(area):
 	for g in area_groups:

@@ -4,6 +4,7 @@ const max_age = 3
 const max_time = 90.0
 const events = [ 
 	"bounce",
+	"big_bounce",
 	"flame" ]
 
 signal age_changed(new_age)
