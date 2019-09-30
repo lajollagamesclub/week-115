@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://bonk.wav" type="AudioStream" id=2]
 [ext_resource path="res://YoungPlayer.tscn" type="PackedScene" id=3]
+[ext_resource path="res://FlameParticles.tscn" type="PackedScene" id=4]
 
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 1 )
@@ -16,3 +17,12 @@ cast_to = Vector2( 0, 300 )
 collision_mask = 2
 
 [node name="YoungPlayer" parent="." instance=ExtResource( 3 )]
+
+[node name="FlameParticles" parent="." instance=ExtResource( 4 )]
+z_index = 2
+emitting = false
+amount = 32
+emission_shape = 2
+emission_rect_extents = Vector2( 23.44, 47.15 )
+angular_velocity = 102.1
+angular_velocity_random = 1.0

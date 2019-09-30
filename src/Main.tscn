@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Boundary.tscn" type="PackedScene" id=1]
 [ext_resource path="res://ShortBoundary.tscn" type="PackedScene" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://BonkFlash.gd" type="Script" id=9]
 [ext_resource path="res://default_theme.tres" type="Theme" id=10]
 [ext_resource path="res://AgeProgressBar.gd" type="Script" id=11]
+[ext_resource path="res://Fader.gd" type="Script" id=12]
 
 [sub_resource type="SegmentShape2D" id=1]
 a = Vector2( -160, -97 )
@@ -102,4 +103,10 @@ theme = ExtResource( 10 )
 value = 68.07
 percent_visible = false
 script = ExtResource( 11 )
+
+[node name="Fader" type="ColorRect" parent="UI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0 )
+script = ExtResource( 12 )
 [connection signal="bonked" from="Player" to="UI/BonkFlash" method="_on_Player_bonked"]

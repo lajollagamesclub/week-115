@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0, 0.158088, 0.889706, 1 )
+colors = PoolColorArray( 1, 0, 0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[node name="FlameParticles" type="CPUParticles2D"]
+amount = 15
+emission_shape = 1
+emission_sphere_radius = 9.5
+gravity = Vector2( 0, -100 )
+scale_amount = 7.6
+color_ramp = SubResource( 1 )

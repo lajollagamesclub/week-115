@@ -9,9 +9,10 @@ const events = [
 signal age_changed(new_age)
 signal time_left_changed(new_time_left)
 signal event(event_name, event_data)
+signal fade_to_scene(scene_path)
 
 var cur_age: int = 0
-
+var fading: bool = false
 var time_left = max_time setget set_time_left
 
 func set_time_left(new_time_left):
@@ -22,6 +23,12 @@ func set_time_left(new_time_left):
 		emit_signal("age_changed", new_age)
 		cur_age = new_age
 	emit_signal("time_left_changed", new_time_left)
+
+func fade_to_scene(scene_path):
+	if fading:
+		return
+	fading = true
+	emit_signal("fade_to_scene", scene_path)
 
 func emit_event(event_type: String, event_data):
 	if event_type in events:
