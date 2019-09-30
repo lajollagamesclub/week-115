@@ -2,6 +2,8 @@ extends KinematicBody2D
 
 class_name Player
 
+const game_state = preload("res://game_state.tres")
+
 signal bonked
 
 const ages = ["young", "adult", "old"]
@@ -25,6 +27,7 @@ var left_raycast: RayCast2D = null
 var sprite: Sprite = null
 var player_data: PlayerData = null
 
+
 func update_playerdata():
 	player_data.connect("bounce", self, "_on_bounce")
 	sprite = player_data.get_node("Sprite")
@@ -32,8 +35,10 @@ func update_playerdata():
 	right_raycast = player_data.get_node("RightRayCast")
 	left_raycast = player_data.get_node("LeftRayCast")
 
-func _on_bounce():
-	vel.y = -0.95*vel.y
+func _on_world_event(event_type, event_data):
+	match event_type:
+		"bounce":
+			vel.y = -event_data
 
 func _on_new_age(in_age: int):
 	set_age(in_age)
@@ -41,7 +46,8 @@ func _on_new_age(in_age: int):
 func _ready():
 	player_data = $YoungPlayer
 	update_playerdata()
-	preload("res://game_state.tres").connect("age_changed", self, "_on_new_age")
+	game_state.connect("event", self, "_on_world_event")
+	game_state.connect("age_changed", self, "_on_new_age")
 
 func _physics_process(delta):
 	horizontal = int(Input.is_action_pressed("g_right")) - int(Input.is_action_pressed("g_left"))

@@ -4,6 +4,8 @@ signal bounce
 
 class_name PlayerData
 
+const game_state = preload("res://game_state.tres")
+
 var area_groups = {
 	"gasoline": [],
 	"hair_spray": [],
@@ -27,7 +29,7 @@ func _on_PlayerData_tree_exiting():
 
 func calculate_next_event():
 	if area_groups["bouncy"].size() > 0:
-		emit_signal("bounce")
+		game_state.emit_event("bounce", get_parent().vel.y)
 
 func _on_PlayerData_area_entered(area):
 	for g in area_groups:

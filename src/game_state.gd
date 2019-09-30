@@ -2,9 +2,13 @@ extends Resource
 
 const max_age = 3
 const max_time = 90.0
+const events = [ 
+	"bounce",
+	"flame" ]
 
 signal age_changed(new_age)
 signal time_left_changed(new_time_left)
+signal event(event_name, event_data)
 
 var cur_age: int = 0
 
@@ -18,3 +22,9 @@ func set_time_left(new_time_left):
 		emit_signal("age_changed", new_age)
 		cur_age = new_age
 	emit_signal("time_left_changed", new_time_left)
+
+func emit_event(event_type: String, event_data):
+	if event_type in events:
+		emit_signal("event", event_type, event_data)
+	else:
+		printerr("Unknown event: ", event_type)
