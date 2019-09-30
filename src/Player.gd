@@ -33,7 +33,7 @@ func update_playerdata():
 	left_raycast = player_data.get_node("LeftRayCast")
 
 func _on_bounce():
-	jump()
+	vel.y = -0.95*vel.y
 
 func _on_new_age(in_age: int):
 	set_age(in_age)
@@ -50,14 +50,15 @@ func _physics_process(delta):
 	if vertical < 0 and floor_raycast.is_colliding():
 		jump()
 	
-	if vel.y < 0:
-		set_casts_bit(1, false)
-		set_collision_layer_bit(1, false)
-		set_collision_mask_bit(1, false)
-	else:
+	if vel.y > 0 and $LedgeRayCast.is_colliding():
 		set_casts_bit(1, true)
 		set_collision_layer_bit(1, true)
 		set_collision_mask_bit(1, true)
+	else:
+		set_casts_bit(1, false)
+		set_collision_layer_bit(1, false)
+		set_collision_mask_bit(1, false)
+	
 	
 	if left_raycast.is_colliding() or right_raycast.is_colliding():
 		if abs(vel.x) > 600:

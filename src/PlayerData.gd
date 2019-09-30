@@ -27,7 +27,6 @@ func _on_PlayerData_tree_exiting():
 
 func calculate_next_event():
 	if area_groups["bouncy"].size() > 0:
-		area_groups["bouncy"].clear()
 		emit_signal("bounce")
 
 func _on_PlayerData_area_entered(area):

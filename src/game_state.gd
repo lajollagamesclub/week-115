@@ -12,6 +12,7 @@ var time_left = max_time setget set_time_left
 
 func set_time_left(new_time_left):
 	time_left = new_time_left
+# warning-ignore:narrowing_conversion
 	var new_age: int = max_age - ceil(time_left/(max_time / max_age))
 	if new_age != cur_age:
 		emit_signal("age_changed", new_age)

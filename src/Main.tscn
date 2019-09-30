@@ -45,8 +45,9 @@ position = Vector2( 1024, 0 )
 
 [node name="World" type="Node2D" parent="."]
 
-[node name="Desk" type="StaticBody2D" parent="World"]
-editor/display_folded = true
+[node name="Desk" type="StaticBody2D" parent="World" groups=[
+"ledge",
+]]
 position = Vector2( 683.527, 539.817 )
 collision_layer = 2
 collision_mask = 2
