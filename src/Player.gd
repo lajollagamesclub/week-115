@@ -26,10 +26,14 @@ var sprite: Sprite = null
 var player_data: PlayerData = null
 
 func update_playerdata():
+	player_data.connect("bounce", self, "_on_bounce")
 	sprite = player_data.get_node("Sprite")
 	floor_raycast = player_data.get_node("FloorRayCast")
 	right_raycast = player_data.get_node("RightRayCast")
 	left_raycast = player_data.get_node("LeftRayCast")
+
+func _on_bounce():
+	jump()
 
 func _on_new_age(in_age: int):
 	set_age(in_age)

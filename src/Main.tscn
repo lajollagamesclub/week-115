@@ -1,15 +1,16 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Boundary.tscn" type="PackedScene" id=1]
 [ext_resource path="res://ShortBoundary.tscn" type="PackedScene" id=2]
 [ext_resource path="res://desk.png" type="Texture" id=3]
 [ext_resource path="res://BookShelf.tscn" type="PackedScene" id=4]
 [ext_resource path="res://monitor.png" type="Texture" id=5]
-[ext_resource path="res://MegalovaniaStarter.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Player.tscn" type="PackedScene" id=7]
-[ext_resource path="res://BonkFlash.gd" type="Script" id=8]
-[ext_resource path="res://default_theme.tres" type="Theme" id=9]
-[ext_resource path="res://AgeProgressBar.gd" type="Script" id=10]
+[ext_resource path="res://PillowArea2D.tscn" type="PackedScene" id=6]
+[ext_resource path="res://MegalovaniaStarter.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Player.tscn" type="PackedScene" id=8]
+[ext_resource path="res://BonkFlash.gd" type="Script" id=9]
+[ext_resource path="res://default_theme.tres" type="Theme" id=10]
+[ext_resource path="res://AgeProgressBar.gd" type="Script" id=11]
 
 [sub_resource type="SegmentShape2D" id=1]
 a = Vector2( -160, -97 )
@@ -43,9 +44,9 @@ position = Vector2( 0, 0 )
 position = Vector2( 1024, 0 )
 
 [node name="World" type="Node2D" parent="."]
-editor/display_folded = true
 
 [node name="Desk" type="StaticBody2D" parent="World"]
+editor/display_folded = true
 position = Vector2( 683.527, 539.817 )
 collision_layer = 2
 collision_mask = 2
@@ -74,9 +75,12 @@ position = Vector2( 580, 390 )
 scale = Vector2( 8, 8 )
 texture = ExtResource( 5 )
 
-[node name="MegalovaniaStarter" parent="." instance=ExtResource( 6 )]
+[node name="PillowArea2D" parent="World" instance=ExtResource( 6 )]
+position = Vector2( 86.3744, 562.835 )
 
-[node name="Player" parent="." instance=ExtResource( 7 )]
+[node name="MegalovaniaStarter" parent="." instance=ExtResource( 7 )]
+
+[node name="Player" parent="." instance=ExtResource( 8 )]
 position = Vector2( 232.624, 441.986 )
 
 [node name="UI" type="CanvasLayer" parent="."]
@@ -85,7 +89,7 @@ position = Vector2( 232.624, 441.986 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 1, 1, 1, 0 )
-script = ExtResource( 8 )
+script = ExtResource( 9 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -93,8 +97,8 @@ __meta__ = {
 [node name="AgeProgressBar" type="ProgressBar" parent="UI"]
 anchor_right = 1.0
 margin_bottom = 50.0
-theme = ExtResource( 9 )
+theme = ExtResource( 10 )
 value = 68.07
 percent_visible = false
-script = ExtResource( 10 )
+script = ExtResource( 11 )
 [connection signal="bonked" from="Player" to="UI/BonkFlash" method="_on_Player_bonked"]
