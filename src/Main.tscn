@@ -43,6 +43,7 @@ position = Vector2( 0, 0 )
 position = Vector2( 1024, 0 )
 
 [node name="World" type="Node2D" parent="."]
+editor/display_folded = true
 
 [node name="Desk" type="StaticBody2D" parent="World"]
 position = Vector2( 683.527, 539.817 )

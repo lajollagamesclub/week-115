@@ -1,6 +1,9 @@
-extends Node2D
+extends Area2D
 
 class_name PlayerData
+
+#var area_groups = {
+#	"
 
 var shape_owner: int = -1
 
@@ -13,3 +16,6 @@ func _ready():
 
 func _on_PlayerData_tree_exiting():
 	get_parent().shape_owner_clear_shapes(shape_owner)
+
+#func _on_PlayerData_area_entered(area):
+#	calculate_next_event() # from areas inside

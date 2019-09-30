@@ -100,7 +100,7 @@ func set_age(new_age: int):
 	if new_age < ages.size():
 		pass
 	else:
-#		print("game over!")
+		get_tree().change_scene("res://LoseScreen.tscn")
 		return
 	age = new_age
 	var new_node: PlayerData = null
